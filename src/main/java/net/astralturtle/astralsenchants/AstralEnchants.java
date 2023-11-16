@@ -1,6 +1,7 @@
 package net.astralturtle.astralsenchants;
 
 import com.mojang.logging.LogUtils;
+import net.astralturtle.astralsenchants.enchantment.ModEnchantments;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.food.FoodProperties;
@@ -34,13 +35,15 @@ import org.slf4j.Logger;
 public class AstralEnchants
 {
     // Define mod id in a common place for everything to reference
-    public static final String MODID = "astrals_enchants";
+    public static final String MODID = "astralsenchants";
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
 
     public AstralEnchants()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        ModEnchantments.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
@@ -55,7 +58,7 @@ public class AstralEnchants
     private void commonSetup(final FMLCommonSetupEvent event)
     {
     }
-    
+
     private void addCreative(final BuildCreativeModeTabContentsEvent event)
     {
 
